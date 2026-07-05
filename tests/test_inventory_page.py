@@ -23,8 +23,7 @@ def test_inventory_page_url(page):
 def test_page_heading(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     heading = inventory_page.get_inventory_page_heading()
 
     assert "Products" == heading
@@ -32,8 +31,7 @@ def test_page_heading(page):
 def test_add_to_cart_button(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     inventory_page.add_to_cart()
     button_text = inventory_page.get_remove_button_text()
 
@@ -42,8 +40,7 @@ def test_add_to_cart_button(page):
 def test_remove_button(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     inventory_page.add_to_cart()
     inventory_page.remove_from_cart()
     button_text = inventory_page.get_add_button_text()
@@ -53,8 +50,7 @@ def test_remove_button(page):
 def test_cart_icon_badge(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     inventory_page.add_to_cart()
     cart_count = inventory_page.get_cart_count()
 
@@ -63,8 +59,7 @@ def test_cart_icon_badge(page):
 def test_logout(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     inventory_page.open_menu()
     inventory_page.logout_account()
 
@@ -73,8 +68,7 @@ def test_logout(page):
 def test_sort_products_by_price_low_to_high(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     inventory_page.sort_products("lohi")
     product_prices = inventory_page.get_product_prices()
 
@@ -83,8 +77,7 @@ def test_sort_products_by_price_low_to_high(page):
 def test_sort_products_by_price_high_to_low(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     inventory_page.sort_products("hilo")
     product_prices = inventory_page.get_product_prices()
 
@@ -93,8 +86,7 @@ def test_sort_products_by_price_high_to_low(page):
 def test_sort_products_by_name_A_Z(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     inventory_page.sort_products("az")
     product_names = inventory_page.get_product_names()
 
@@ -103,8 +95,7 @@ def test_sort_products_by_name_A_Z(page):
 def test_sort_products_by_name_Z_A(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     inventory_page.sort_products("za")
     product_names = inventory_page.get_product_names()
 

@@ -7,8 +7,7 @@ password = "secret_sauce"
 def test_cart_page_title(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     cart_page = inventory_page.click_cart_icon()
     page_title = cart_page.get_page_title()
 
@@ -17,8 +16,7 @@ def test_cart_page_title(page):
 def test_continue_shopping_button(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     inventory_page.add_to_cart()
     cart_page = inventory_page.click_cart_icon()
     cart_page.continue_shopping()
@@ -29,8 +27,7 @@ def test_continue_shopping_button(page):
 def test_item_appears_in_cart(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     added_items= inventory_page.add_to_cart()
     cart_page = inventory_page.click_cart_icon()
     cart_items = cart_page.get_added_item_name()
@@ -40,8 +37,7 @@ def test_item_appears_in_cart(page):
 def test_remove_button_on_cart(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     inventory_page.add_to_cart()
     cart_page = inventory_page.click_cart_icon()
     cart_page.remove_item_from_cart()
@@ -52,8 +48,7 @@ def test_remove_button_on_cart(page):
 def test_checkout_button(page):
     login_page = LoginPage(page)
     login_page.open()
-    login_page.login(username, password)
-    inventory_page = InventoryPage(page)
+    inventory_page = login_page.login(username, password)
     inventory_page.add_to_cart()
     cart_page = inventory_page.click_cart_icon()
     address_page = cart_page.continue_to_checkout()
