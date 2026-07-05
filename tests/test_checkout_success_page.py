@@ -1,14 +1,9 @@
+from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
 from data.address import FIRST_NAME , LAST_NAME, ZIP_CODE
 
-username = "standard_user"
-password = "secret_sauce"
-
-def test_title_of_page(page):
-    login_page = LoginPage(page)
-    login_page.open()
-
-    inventory_page = login_page.login(username, password)
+def test_title_of_page(authenticated_page):
+    inventory_page = InventoryPage(authenticated_page)
     inventory_page.add_to_cart()
     cart_page = inventory_page.click_cart_icon()
 
@@ -21,11 +16,8 @@ def test_title_of_page(page):
 
     assert title == "Checkout: Complete!"
 
-def test_success_message(page):
-    login_page = LoginPage(page)
-    login_page.open()
-
-    inventory_page = login_page.login(username, password)
+def test_success_message(authenticated_page):
+    inventory_page = InventoryPage(authenticated_page)
     inventory_page.add_to_cart()
     cart_page = inventory_page.click_cart_icon()
 

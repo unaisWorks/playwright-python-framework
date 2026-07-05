@@ -1,13 +1,9 @@
+from pages.inventory_page import InventoryPage
 from pages.login_page import LoginPage
 from data.address import FIRST_NAME, LAST_NAME, ZIP_CODE
 
-username = "standard_user"
-password = "secret_sauce"
-
-def test_title_of_page(page):
-    login_page = LoginPage(page)
-    login_page.open()
-    inventory_page = login_page.login(username,password)
+def test_title_of_page(authenticated_page):
+    inventory_page = InventoryPage(authenticated_page)
     inventory_page.add_to_cart()
     cart_page = inventory_page.click_cart_icon()
     address_page = cart_page.continue_to_checkout()
@@ -18,10 +14,8 @@ def test_title_of_page(page):
 
     assert title ==  "Checkout: Overview"
 
-def test_confirm_product_data(page):
-    login_page = LoginPage(page)
-    login_page.open()
-    inventory_page = login_page.login(username, password)
+def test_confirm_product_data(authenticated_page):
+    inventory_page = InventoryPage(authenticated_page)
     inventory_page.add_to_cart()
     cart_page = inventory_page.click_cart_icon()
     added_product = cart_page.get_added_item()
@@ -32,10 +26,8 @@ def test_confirm_product_data(page):
 
     assert products == added_product
 
-def test_cancel_order(page):
-    login_page = LoginPage(page)
-    login_page.open()
-    inventory_page = login_page.login(username, password)
+def test_cancel_order(authenticated_page):
+    inventory_page = InventoryPage(authenticated_page)
     inventory_page.add_to_cart()
     cart_page = inventory_page.click_cart_icon()
     address_page = cart_page.continue_to_checkout()
@@ -45,10 +37,8 @@ def test_cancel_order(page):
     title = inventory_page.get_page_title()
     assert title == "Swag Labs"
 
-def test_finish_order(page):
-    login_page = LoginPage(page)
-    login_page.open()
-    inventory_page = login_page.login(username, password)
+def test_finish_order(authenticated_page):
+    inventory_page = InventoryPage(authenticated_page)
     inventory_page.add_to_cart()
     cart_page = inventory_page.click_cart_icon()
     address_page = cart_page.continue_to_checkout()
