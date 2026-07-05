@@ -1,20 +1,21 @@
+from playwright.sync_api import expect
+
 from pages.inventory_page import InventoryPage
 
 def test_cart_page_title(authenticated_page):
     inventory_page = InventoryPage(authenticated_page)
     cart_page = inventory_page.click_cart_icon()
-    page_title = cart_page.get_page_title()
 
-    assert page_title == "Your Cart"
+    expect(cart_page.get_page_title()).to_have_text("Your Cart")
 
 def test_continue_shopping_button(authenticated_page):
     inventory_page = InventoryPage(authenticated_page)
     inventory_page.add_to_cart()
     cart_page = inventory_page.click_cart_icon()
     cart_page.continue_shopping()
-    page_title = inventory_page.get_page_title()
 
-    assert page_title == "Swag Labs"
+    expect(inventory_page.get_page_title()).to_have_text("Products")
+
 
 def test_item_appears_in_cart(authenticated_page):
     inventory_page = InventoryPage(authenticated_page)
@@ -38,6 +39,6 @@ def test_checkout_button(authenticated_page):
     inventory_page.add_to_cart()
     cart_page = inventory_page.click_cart_icon()
     address_page = cart_page.continue_to_checkout()
-    title_check = address_page.get_title()
 
-    assert title_check == "Checkout: Your Information"
+    expect(address_page.get_title()).to_have_text("Checkout: Your Information")
+

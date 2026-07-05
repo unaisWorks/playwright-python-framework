@@ -7,7 +7,7 @@ class CheckoutSuccessPage:
         self.page = page
 
     def get_title(self):
-        return self.page.locator(self.TITLE).text_content()
+        return self.page.locator(self.TITLE)
 
     def get_message(self):
         return self.page.locator(self.MESSAGE).text_content()

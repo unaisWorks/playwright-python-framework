@@ -11,7 +11,7 @@ class CheckoutAddressPage:
         self.page = page
 
     def get_title(self):
-        return self.page.locator(self.TITLE).text_content()
+        return self.page.locator(self.TITLE)
 
     def fill_address_form(self, FIRST_NAME,LAST_NAME,ZIP_CODE):
        self.page.locator(self.FIRST_NAME_LOCATOR).fill(FIRST_NAME)

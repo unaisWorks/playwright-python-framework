@@ -14,7 +14,7 @@ class CartPage:
 
 
     def get_page_title(self):
-        return self.page.locator(self.PAGE_TITLE).text_content()
+        return self.page.locator(self.PAGE_TITLE)
 
     def get_added_item_name(self):
         return self.page.locator(self.CART_ITEM).text_content().strip()

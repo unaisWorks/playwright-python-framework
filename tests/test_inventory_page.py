@@ -1,11 +1,12 @@
+from playwright.sync_api import expect
+
 from pages.inventory_page import InventoryPage
 
 
 def test_inventory_page_title(authenticated_page):
     inventory_page = InventoryPage(authenticated_page)
-    inventory_title = inventory_page.get_page_title()
+    expect(inventory_page.get_page_title()).to_have_text("Products")
 
-    assert "Swag Labs" in inventory_title
 
 def test_inventory_page_url(authenticated_page):
     assert "inventory" in authenticated_page.url

@@ -1,5 +1,6 @@
+from playwright.sync_api import expect
+
 from pages.inventory_page import InventoryPage
-from pages.login_page import LoginPage
 from data.address import FIRST_NAME, LAST_NAME, ZIP_CODE
 
 def test_title_of_page(authenticated_page):
@@ -10,9 +11,7 @@ def test_title_of_page(authenticated_page):
     address_page.fill_address_form(FIRST_NAME , LAST_NAME , ZIP_CODE)
     overview_page  = address_page.proceed_to_overview_page()
 
-    title = overview_page.get_title()
-
-    assert title ==  "Checkout: Overview"
+    expect(overview_page.get_title()).to_have_text("Checkout: Overview")
 
 def test_confirm_product_data(authenticated_page):
     inventory_page = InventoryPage(authenticated_page)
@@ -34,8 +33,8 @@ def test_cancel_order(authenticated_page):
     address_page.fill_address_form(FIRST_NAME, LAST_NAME, ZIP_CODE)
     overview_page = address_page.proceed_to_overview_page()
     inventory_page = overview_page.cancel_order()
-    title = inventory_page.get_page_title()
-    assert title == "Swag Labs"
+
+    expect(inventory_page.get_page_title()).to_have_text("Products")
 
 def test_finish_order(authenticated_page):
     inventory_page = InventoryPage(authenticated_page)
@@ -45,8 +44,8 @@ def test_finish_order(authenticated_page):
     address_page.fill_address_form(FIRST_NAME, LAST_NAME, ZIP_CODE)
     overview_page = address_page.proceed_to_overview_page()
     success_page = overview_page.finish_order()
-    title = success_page.get_title()
 
-    assert title == "Checkout: Complete!"
+    expect(success_page.get_title()).to_have_text("Checkout: Complete!")
+
 
 

@@ -1,5 +1,6 @@
+from playwright.sync_api import expect
+
 from pages.inventory_page import InventoryPage
-from pages.login_page import LoginPage
 from data.address import FIRST_NAME , LAST_NAME, ZIP_CODE
 
 def test_title_of_page(authenticated_page):
@@ -12,9 +13,9 @@ def test_title_of_page(authenticated_page):
     overview_page = address_page.proceed_to_overview_page()
 
     success_page = overview_page.finish_order()
-    title = success_page.get_title()
 
-    assert title == "Checkout: Complete!"
+    expect(success_page.get_title()).to_have_text("Checkout: Complete!")
+
 
 def test_success_message(authenticated_page):
     inventory_page = InventoryPage(authenticated_page)

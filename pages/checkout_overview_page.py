@@ -9,7 +9,7 @@ class CheckoutOverviewPage:
         self.page = page
 
     def get_title(self):
-        return self.page.locator(self.TITLE).text_content()
+        return self.page.locator(self.TITLE)
 
     def fetch_products_name(self):
         return self.page.locator(self.PRODUCT).text_content()
