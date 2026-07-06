@@ -34,9 +34,6 @@ class InventoryPage:
     def get_remove_button_text(self, product_name=DEFAULT_PRODUCT):
         return self.page.locator(f'[data-test="remove-{self._slug(product_name)}"]').text_content()
 
-    def remove_item_from_cart(self):
-        self.page.locator(self.REMOVE_FROM_CART_BUTTON).click()
-
     def get_cart_count(self):
         return self.page.locator(self.CART_ICON).text_content()
 

@@ -27,5 +27,5 @@ def test_success_message(authenticated_page):
     overview_page = address_page.proceed_to_overview_page()
 
     success_page = overview_page.finish_order()
-    message = success_page.get_message()
-    assert message == "Thank you for your order!"
+
+    expect(success_page.get_message()).to_have_text("Thank you for your order!")

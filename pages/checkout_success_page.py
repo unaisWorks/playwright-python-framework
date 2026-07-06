@@ -10,5 +10,5 @@ class CheckoutSuccessPage:
         return self.page.locator(self.TITLE)
 
     def get_message(self):
-        return self.page.locator(self.MESSAGE).text_content()
+        return self.page.locator(self.MESSAGE)
 
