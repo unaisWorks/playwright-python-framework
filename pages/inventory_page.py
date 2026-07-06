@@ -8,7 +8,6 @@ class InventoryPage:
     SORT_DROPDOWN = '[data-test="product-sort-container"]'
     PRODUCT_PRICES = '[data-test="inventory-item-price"]'
     PRODUCT_NAMES = '[data-test="inventory-item-name"]'
-    HEADING = '[data-test="title"]'
 
     DEFAULT_PRODUCT = "Sauce Labs Backpack"
 
@@ -45,9 +44,6 @@ class InventoryPage:
         self.page.locator(self.CART_ICON).click()
         from pages.cart_page import CartPage
         return CartPage(self.page)
-
-    def get_inventory_page_heading(self):
-        return self.page.locator(self.HEADING).text_content()
 
     def open_menu(self):
         self.page.locator(self.MENU_ICON).click()
